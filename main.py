@@ -184,9 +184,10 @@ def setup(env):
     if False:
         yield
 
-env = simpy.Environment()
-env.process(setup(env))
-env.run(until=GlobalVariable.simulation_time)
+if __name__ == "__main__":
+    env = simpy.Environment()
+    env.process(setup(env))
+    env.run(until=GlobalVariable.simulation_time)
 
 
 
@@ -258,13 +259,7 @@ print("[node info] sent_ALT_teller: %d" % (GlobalVariable.sent_teller))
 print("[node info] sent_ADV_teller: %d" % (GlobalVariable.sent_ADV_teller))
 print("[node info] sent_EXT_ADV_teller: %d" % (GlobalVariable.sent_EXT_ADV_teller))
 print("[node info] ext_adv_full success: %d" % GlobalVariable.ext_adv_full_success)
-
-
 pprint.pprint(vars(Data_Base.all_ext_frames_in_transmit["Node 0", "ExtFrame 0"]))
-
-#pprint.pprint(vars(Data_Base.all_frames_in_transmit["Node 0", "Frame 0"]))
-#pprint.pprint(vars(Data_Base.all_ext_frames_in_transmit["Node 0", "ExtFrame 0"]))
-
 
 
 
