@@ -1,5 +1,5 @@
-import random
 import simpy
+import random
 import pprint
 
 
@@ -14,7 +14,6 @@ class GlobalVariable():
     radio_delay = 0.000002
     ext_adv_frame_time = 0.004112              #0.004112
     observer_current_frequency = 37
-
     fail_teller = 0
     sent_teller = 0
     sent_ADV_teller = 0
@@ -175,20 +174,20 @@ class Data_Base(object):
         del Data_Base.ext_frames_in_transmit[pakke_id]
         return
 
-
 def setup(env):
     n_t = GlobalVariable.num_nodes
-    for i in range(n_t):
-        env.process(node_funk(env, 'Node %d' % i))
-        #print("Process (node): %d is laid and runs in parallel with other " %i)
-    if False:
+    try:
+        for i in range(n_t):
+            env.process(node_funk(env, 'Node %d' % i))
+            print("Process (node): %d is laid and runs in parallel with other " %i)
+    except: #will never occur
+        print("Cant add Nodes to virtual enviermant")
         yield
 
 if __name__ == "__main__":
     env = simpy.Environment()
     env.process(setup(env))
     env.run(until=GlobalVariable.simulation_time)
-
 
 
 
